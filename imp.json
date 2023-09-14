@@ -1,22 +1,35 @@
 {
-    "points": [
+    "polygon": [
         {
             "title": "Palm Jumeriah",
-            "content": "Palm Jumeriah",
-            "lon": 55.13168493438225,
-            "lat": 25.120095325562833
+            "content": "The tree-shaped Palm Jumeirah island is known for glitzy hotels, posh apartment towers and upmarket global restaurants. Food trucks offering snacks like shawarma dot the Palm Jumeirah Boardwalk, popular for its views of the Dubai coastline and the sail-shaped Burj Al Arab hotel. Beach clubs with spas and infinity pools turn into boisterous nightclubs with live DJs in the evening.",
+            "square": [
+                [55.08425933298674, 25.115909611373187],
+                [55.129383493067145, 25.163419334793065],
+                [55.18927877981839, 25.125003598468716],
+                [55.143350107018115, 25.064194526072868]
+            ]
         },
         {
             "title": "Palm Jebel Ali",
             "content": "Palm Jebel Ali",
-            "lon": 54.990307839306354,
-            "lat": 25.003858488240674
+            "square": [
+                [54.915809564510425, 25.05351135735754],
+                [55.05746438674491, 25.054240485287526],
+                [55.05585467285588, 24.966714191406272],
+                [54.91419985062139, 24.968173473916437]
+            ]
+            
         },
         {
             "title": "The World Islands",
             "content": "The World Islands",
-            "lon": 55.16500580298765,
-            "lat": 25.22234499330653
+            "square": [
+                [55.09465777771591, 25.270747131384216],
+                [55.236204800995026, 25.270747131384216],
+                [55.23841647323376, 25.174708405828067],
+                [55.096869449954646, 24.175709199872156]
+            ]
         }
     ]
 }
