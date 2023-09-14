@@ -1,0 +1,22 @@
+{
+    "polygon": [
+        {
+            "title": "Palm Jumeriah",
+            "content": "Palm Jumeriah",
+            "lon": 55.13168493438225,
+            "lat": 25.120095325562833
+        },
+        {
+            "title": "Palm Jebel Ali",
+            "content": "Palm Jebel Ali",
+            "lon": 54.990307839306354,
+            "lat": 25.003858488240674
+        },
+        {
+            "title": "The World Islands",
+            "content": "The World Islands",
+            "lon": 55.16500580298765,
+            "lat": 25.22234499330653
+        }
+    ]
+}

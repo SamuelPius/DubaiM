@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="style2.css">
+    <title>Dubai Muncipality</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.22/"></script>
+
+    <script>
+        require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer"
+
+        ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+            esriConfig.apiKey = "AAPKf7ae662e60664146b6dbea652154105amLLl27TtD"+
+            "DBFv2jdnChRTlV9I--4UlBLxXmEdpewg98-nhdJCtMibwTZ0cm9MbYL";
+
+            const map = new Map({
+                basemap: "arcgis-imagery" // Basemap layer service
+            });
+            // Yellowstone national Park is the starting map view
+            const view = new MapView({
+                map: map,
+                center: [55.13417716,25.12593537], // Longitude, latitude
+                zoom: 23/2, // Zoom level
+                container: "viewDiv" // Div element
+            });
+
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+
+            // Create all the points from a data file
+            fetch('https://raw.githubusercontent.com/gib-student/GIS-webpage--learn/main/data.json')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                for (let i in data.points) {
+                    console.log(data.points[i].title);
+                    const point = { //Create a point
+                        type: "point",
+                        longitude: data.points[i].lon,
+                        latitude: data.points[i].lat
+                    };
+                    const simpleMarkerSymbol = {
+                        type: "simple-marker",
+                        color: [226, 119, 40],  // Orange
+                        outline: {
+                            color: [255, 255, 255], // White
+                            width: 1
+                        }
+                    };
+                    const popupTemplate = {
+                        title: "{Name}",
+                        content: "{Description}"
+                    };
+                    const attributes = {
+                        Name: data.points[i].title,
+                        Description: data.points[i].content
+                    };
+                    const pointGraphic = new Graphic({
+                        geometry: point,
+                        symbol: simpleMarkerSymbol,
+        
+                        attributes: attributes,
+                        popupTemplate: popupTemplate
+                    });
+                    graphicsLayer.add(pointGraphic);
+                }
+            });
+        });
+
+      </script>
+
+  </head>
+  <body>
+    <nav>
+        <ul>
+            <li><a href="#">Dubai Muncipality</a></li>
+            <li><a href="#">Standard Nautical Charts</a></li>
+            <li><a href="#">Electronic Navigational Chart</a></li>
+            <li><a href="#">DM Tide Tables</a></li>
+            <li><a href="#">Notice to Marines</a></li>
+        </ul>
+    </nav>
+    <div id="viewDiv">
+        <form role="search" id="form">
+            <input type="search" id="query" name="q" placeholder="Search..." aria-label="Search through site content">
+            <button>
+              <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+            </button>
+          </form>
+    </div>
+    <script>
+        const f = document.getElementById('form');
+        const q = document.getElementById('query');
+        const google = 'https://www.google.com/search?q=site%3A+';
+        const site = 'dm.gov.ae';
+  
+        function submitted(event) {
+          event.preventDefault();
+          const url = google + site + '+' + q.value;
+          const win = window.open(url, '_blank');
+          win.focus();
+        }
+  
+        f.addEventListener('submit', submitted);
+      </script>
+  </body>
+</html>
